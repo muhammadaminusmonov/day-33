@@ -42,6 +42,7 @@
 import requests
 import datetime as dt
 import smtplib
+import time
 from email.mime.text import MIMEText
 
 
@@ -94,5 +95,7 @@ def send_email():
         server.sendmail(from_addr=email, to_addrs=email, msg=msg.as_string())
 
 
-if is_iss_overhead() and is_night():
-    send_email()
+while True:
+    time.sleep(120)
+    if is_iss_overhead() and is_night():
+        send_email()
